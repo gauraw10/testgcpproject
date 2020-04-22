@@ -1,0 +1,19 @@
+<ul >
+  {{#items}}
+    <li>
+        <h2>{{ title }}</h2>
+        <p>{{ description }}</p>
+        <p>Location: {{ location }}</p>
+        <p>Likes: {{ likes }}
+        <form method="POST" action="/item/like">
+        <input type="hidden" value="{{_id}}" name="id">
+        <input type="submit" value="Like">
+        </form>
+        <form method="POST" action="/item/unlike">
+        <input type="hidden" value="{{_id}}" name="id">
+        <input type="submit" value="UN-Like">
+        </form>
+        </p>
+    </li>
+  {{/items}}
+</ul>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Team [TEAM NAME] Website</title>
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+   <meta charset="UTF-8">
+      <title>Web Portal</title>
+      <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<div>
+  <h1>Welcome to the Pundit's Portal</h1>
+  <h2>Add an item</h2>
+    <form action="/addItem" method="post">
+        <label for="itemName">Item Name:</label>
+        <input type="text" id="itemName" name="itemName"><br>
+
+        <label for="itemType">Item Type:</label>
+        <input type="text" id="itemType" name="itemType"><br>
+
+        <label for="itemNumber">Item Number:</label>
+        <input type="text" id="itemNumber" name="itemNumber"><br>
+
+        <label for="storeCode">Store Code:</label>
+        <input type="text" id="storeCode" name="storeCode"><br>
+
+        <label for="quantity">Quantity:</label>
+        <input type="number" id="quantity" name="quantity"><br>
+
+        <label>Store</label><br>
+        <input type="radio" id="malmo" name="store" value="Malmo">
+        <label for="malmo">Malmo</label><br>
+        <input type="radio" id="helsinborg" name="store" value="Helsinborg">
+        <label for="helsinborg">Helsinborg</label><br>
+        <input type="radio" id="stockholm" name="store" value="Stockholm">
+        <label for="stockholm">Stockholm</label><br>
+
+        <br>
+        <br>
+        <input class="submitButton" type="submit" value="Submit">
+
+    </form>
+  </div>
+</body>
+</html>
