@@ -1,0 +1,30 @@
+block content
+     h1 Please add an Item
+     h3
+         form(action="/addItem" method="post")
+                label(for="itemNumber") Item Number
+                input(type="number" id="itemNumber" name="itemNumber")
+                br
+                label(for="itemType") Item Type
+                input(type="text" id="itemType" name="itemType")
+                br
+                label(for="itemName") Item Name
+                input(type="text" id="itemName" name="itemName")
+                br
+                label(for="store") Store
+                br
+                input(type="radio" id="malmo" name="store" value="Malmo")
+                label(for="malmo") Malmo
+                input(type="radio" id="helsinborg" name="store" value="Helsinborg")
+                label(for="helsinborg") Helsinborg
+                input(type="radio" id="stockholm" name="store" value="Stockholm")
+                label(for="stockholm") Stockholm
+                br
+                label(for="storeCode") Store Code
+                input(type="number" id="storeCode" name="storeCode")
+                br
+                label(for="quantity") Quantity
+                input(type="number" id="quantity" name="quantity")
+                br
+                input(class="submitButton" type="submit" value="Submit")
+     a(class='button', href="/") Back to Home Page

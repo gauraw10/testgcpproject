@@ -1,0 +1,40 @@
+html
+    head
+        title!=title
+    body
+        div
+            table
+              thead
+                tr
+                    th
+                        a(href="/addItem") Add Items
+                    th
+                        a(class='button', href="/login" text-align= "center") Login
+        div
+            table(border="1")
+              thead
+                tr
+                  th Serial Number
+                  th Item Name
+                  th Item Number
+                  th Store Code
+                  th Quantity
+                  th Store Code
+                  th Item Type
+                  th Store
+
+              tbody
+                each val,index in items
+                   tr
+                     td #{index+1}
+                     td #{val.itemName}
+                     td #{val.itemNumber}
+                     td #{val.storeCode}
+                     td #{val.quantity}
+                     td #{val.storeCode}
+                     td #{val.itemType}
+                     td #{val.store}
+
+
+
+
