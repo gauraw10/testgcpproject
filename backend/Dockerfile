@@ -16,7 +16,7 @@ RUN npm install
 # Copy local code to the container image.
 COPY . ./
 
-ENV PORT 8080
+ENV PORT 8086
 
 # Run the web service on container startup.
 CMD [ "npm", "start" ]
