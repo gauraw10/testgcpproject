@@ -38,7 +38,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
-      uses: actions/gauraw10/testgcpproject/frontend@master
+      uses: actions/checkout@v2
 
     # Setup gcloud CLI
     - uses: GoogleCloudPlatform/github-actions/setup-gcloud@master
@@ -70,7 +70,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
-      uses: actions/gauraw10/testgcpproject/backend@master
+      uses: actions/checkout@v2
 
     # Setup gcloud CLI
     - uses: GoogleCloudPlatform/github-actions/setup-gcloud@master
