@@ -1,30 +1,79 @@
-block content
-     h1 Please add an Item
-     h3
-         form(action="/addItem" method="post")
-                label(for="itemNumber") Item Number
-                input(type="number" id="itemNumber" name="itemNumber")
-                br
-                label(for="itemType") Item Type
-                input(type="text" id="itemType" name="itemType")
-                br
-                label(for="itemName") Item Name
-                input(type="text" id="itemName" name="itemName")
-                br
-                label(for="store") Store
-                br
-                input(type="radio" id="malmo" name="store" value="Malmo")
-                label(for="malmo") Malmo
-                input(type="radio" id="helsinborg" name="store" value="Helsinborg")
-                label(for="helsinborg") Helsinborg
-                input(type="radio" id="stockholm" name="store" value="Stockholm")
-                label(for="stockholm") Stockholm
-                br
-                label(for="storeCode") Store Code
-                input(type="number" id="storeCode" name="storeCode")
-                br
-                label(for="quantity") Quantity
-                input(type="number" id="quantity" name="quantity")
-                br
-                input(class="submitButton" type="submit" value="Submit")
-     a(class='button', href="/") Back to Home Page
+doctype html
+html
+       head
+              title Furnish and Decorate
+              meta(name='description', content='website description')
+              meta(name='keywords', content='website keywords, website keywords')
+              meta(http-equiv='content-type', content='text/html; charset=windows-1252')
+              link(rel='stylesheet', type='text/css', href='/style/style.css')
+       body
+              #main
+                     #header
+                            #logo
+                                   #logo_text
+                                          // class="logo_colour", allows you to change the colour of the text
+                                          h1
+                                                 a(href='index.html')
+                                                        | Furnish and Decorate
+                                                        br
+                                                        span.logo_colour Pundit Furniture
+                                          h2
+                            #menubar
+                                   ul#menu
+                                          // put class="selected" in the li tag for the selected page - to highlight which page you're on
+                                          li.selected
+                                                 a(href='#') Home
+                                          li
+                                                 a(href='/product') Products
+                                          li
+                                                 a(href='page.html') A Page
+                                          li
+                                                 a(href='meet.html') Meet the Team
+                                          li
+                                                 a(href='contact.html') Contact Us
+                                          li
+                                                 a(href='login.html') Login
+                                          br
+                                          .selected
+                                                 block content
+                                                    #content
+                                                      h1 Please add an Item
+                                                      h3
+                                                          form(action="/addItem" method="post")
+                                                                 label(for="itemNumber") Item Number
+                                                                 input(type="number" id="itemNumber" name="itemNumber")
+                                                                 br
+                                                                 label(for="itemType") Item Type
+                                                                 input(type="text" id="itemType" name="itemType")
+                                                                 br
+                                                                 label(for="itemName") Item Name
+                                                                 input(type="text" id="itemName" name="itemName")
+                                                                 br
+                                                                 label(for="store") Store
+                                                                 br
+                                                                 input(type="radio" id="malmo" name="store" value="Malmo")
+                                                                 label(for="malmo") Malmo
+                                                                 br
+                                                                 input(type="radio" id="helsinborg" name="store" value="Helsinborg")
+                                                                 label(for="helsinborg") Helsinborg
+                                                                 br
+                                                                 input(type="radio" id="stockholm" name="store" value="Stockholm")
+                                                                 label(for="stockholm") Stockholm
+                                                                 br
+                                                                 label(for="storeCode") Store Code
+                                                                 input(type="number" id="storeCode" name="storeCode")
+                                                                 br
+                                                                 label(for="quantity") Quantity
+                                                                 input(type="number" id="quantity" name="quantity")
+                                                                 br
+                                                                 label(for="price") Price
+                                                                 input(type="number" id="price" name="price")
+                                                                 br
+                                                                 label(for="discount") Discount
+                                                                 input(type="number" id="discount" name="discount")
+                                                                 br
+                                                                 label(for="upload") Image to Upload
+                                                                 input(type="file" name="upload" id="upload")
+                                                                 br
+                                                                 input(class="submitButton" type="submit" value="Submit")
+                                                      a(class='button', href="/") Back to Home Page

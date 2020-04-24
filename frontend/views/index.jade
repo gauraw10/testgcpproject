@@ -1,40 +1,135 @@
+doctype html
 html
     head
-        title!=title
+        title Furnish and Decorate
+        meta(name='description', content='website description')
+        meta(name='keywords', content='website keywords, website keywords')
+        meta(http-equiv='content-type', content='text/html; charset=windows-1252')
+        link(rel='stylesheet', type='text/css', href='/style/style.css')
     body
-        div
-            table
-              thead
-                tr
-                    th
-                        a(href="/addItem") Add Items
-                    th
-                        a(class='button', href="/login" text-align= "center") Login
-        div
-            table(border="1")
-              thead
-                tr
-                  th Serial Number
-                  th Item Name
-                  th Item Number
-                  th Store Code
-                  th Quantity
-                  th Store Code
-                  th Item Type
-                  th Store
+        #main
+            #header
+                #logo
+                    #logo_text
+                        // class="logo_colour", allows you to change the colour of the text
+                        h1
+                            a(href='index.html')
+                                | Furnish and Decorate
+                                br
+                                span.logo_colour Pundit Furniture
+                        h2
+                #menubar
+                    ul#menu
+                        // put class="selected" in the li tag for the selected page - to highlight which page you're on
+                        li.selected
+                            a(href='#') Home
+                        li
+                            a(href='/product') Products
+                        li
+                            a(href='page.html') A Page
+                        li
+                            a(href='meet.html') Meet the Team
+                        li
+                            a(href='contact.html') Contact Us
+                        li
+                            a(href='login.html') Login
+            #content_header
+            #site_content
+                #banner
+                #sidebar_container
+                    .sidebar
+                        .sidebar_top
+                        .sidebar_item
+                            // insert your sidebar items here
+                            h3 Latest News
+                            h4 New Website Launched
+                            h5 April 23, 2020
+                            p
+                                | 2020 sees the redesign of our website. Take a look around and let us know what you think.
+                                br
+                                a(href='#') Read more
+                        .sidebar_base
+                    .sidebar
+                        .sidebar_top
+                        .sidebar_item
+                            h3 Useful Links
+                            ul
+                                li
+                                    a(href='#') link 1
+                                li
+                                    a(href='#') link 2
+                                li
+                                    a(href='#') link 3
+                                li
+                                    a(href='#') link 4
+                        .sidebar_base
+                    .sidebar
+                        .sidebar_top
+                        .sidebar_item
+                            h3 Search
+                            form#search_form(method='post', action='#')
+                                p
+                                    input.search(type='text', name='search_field', value='Enter keywords.....')
+                                    input(name='search', type='image', style='border: 0; margin: 0 0 -9px 5px;', src='../style/search.png', alt='Search', title='Search')
+                        .sidebar_base
+                #content
+                    // insert the page content here
+                    h1 Welcome to the Furnish and Decorate
+                    div
+                        table(border="1")
+                            thead
+                                tr
+                                    th Item Name
+                                    th Quantity
+                                    th Store
+                                    th Price
+                                    th Discount
+                                    th Likes
+                                    th Image
 
-              tbody
-                each val,index in items
-                   tr
-                     td #{index+1}
-                     td #{val.itemName}
-                     td #{val.itemNumber}
-                     td #{val.storeCode}
-                     td #{val.quantity}
-                     td #{val.storeCode}
-                     td #{val.itemType}
-                     td #{val.store}
+                            tbody
+                                each val,index in items
+                                    tr
+                                        td #{val.itemName}
+                                        td #{val.quantity}
+                                        td #{val.store}
+                                        td #{val.price}
+                                        td #{val.discount}
+                                        td #{val.likes}
+                                        td
+                                            img(src='https://storage.cloud.google.com/team-member-pics/t-1.jpg', height='100', width='100')
+                    p
+                        | This standards compliant, simple, fixed width website template is released as an 'open source' design (under a
+                        a(href='http://creativecommons.org/licenses/by/3.0') Creative Commons Attribution 3.0 Licence
+                        | ), which means that you are free to download and use it for anything you want (including modifying and amending it). All I ask is that you leave the 'design from HTML5webtemplates.co.uk' link in the footer of the template, but other than that...
+                    p
+                        | This template is written entirely in
+                        strong HTML5
+                        |  and
+                        strong CSS
+                        | , and can be validated using the links in the footer.
+                    p
+                        | You can view more free HTML5 web templates
+                        a(href='http://www.html5webtemplates.co.uk') here
+                        | .
+                    p
+                        | This template is a fully functional 5 page website, with an
+                        a(href='examples.html') examples
+                        |  page that gives examples of all the styles available with this design.
+                    h2 Browser Compatibility
+                    p This template has been tested in the following browsers:
+                    ul
+                        li Internet Explorer 9
+                        li FireFox 25
+                        li Google Chrome 31
 
-
-
-
+            #content_footer
+            #footer
+                p
+                    a(href='/') Home
+                    a(href='examples.html') Examples
+                    a(href='page.html') A Page
+                    a(href='another_page.html') Another Page
+                    a(href='contact.html') Contact Us
+                p
+                    | Copyright © RAGS
