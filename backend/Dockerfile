@@ -3,7 +3,7 @@
 FROM node:12-slim
 
 # Create and change to the app directory.
-WORKDIR /usr/src/app
+WORKDIR ./pundit-app/backend
 
 # Copy application dependency manifests to the container image.
 # A wildcard is used to ensure both package.json AND package-lock.json are copied.
@@ -16,7 +16,7 @@ RUN npm install
 # Copy local code to the container image.
 COPY . ./
 
-ENV PORT 8080
+ENV PORT 8086
 
 # Run the web service on container startup.
 CMD [ "npm", "start" ]

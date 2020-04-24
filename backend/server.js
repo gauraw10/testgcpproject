@@ -11,6 +11,18 @@ const bodyParser = require('body-parser');
 // bring in firestore
 const Firestore = require("@google-cloud/firestore");
 
+const Cloud = require('@google-cloud/storage')
+const { Storage } = Cloud
+
+const bucketName = 'webportal-frontend-item-bucket';
+
+
+// const multerMid = multer({
+//     storage: multer.memoryStorage(),
+//     limits: {
+//         fileSize: 5 * 1024 * 1024,
+//     },
+// })
 // configure with current project
 const firestore = new Firestore(
     {
@@ -23,7 +35,9 @@ const app = express();
 
 // the backend server will parse json, not a form request
 app.use(bodyParser.json());
+// app.use(bodyParser.urlencoded({extended: true}))
 
+// app.use(multerMid.single('file'));
 // mock events data - for a real solution this data should be coming 
 // from a cloud data store
 const mockEvents = {
@@ -92,7 +106,44 @@ function getItems(req, res) {
         });
 };
 
+async function uploadImage(filename) {
+    // Uploads a local file to the bucket
+    console.log('Inside Upload Image Method');
+     const storage = new Storage();
+    await storage.bucket(bucketName).upload(filename, {
+        // Support for HTTP requests made with `Accept-Encoding: gzip`
+        gzip: true,
+        // By setting the option `destination`, you can change the name of the
+        // object you are uploading to a bucket.
+        metadata: {
+            // Enable long-lived HTTP caching headers
+            // Use only if the contents of the file will never change
+            // (If the contents will change, use cacheControl: 'no-cache')
+            cacheControl: 'public, max-age=31536000',
+        }
+    });
+    console.log(`${filename} uploaded to ${bucketName}.`)
 
+    // console.log(fileObj);
+    // const bucket = storage.bucket(GCLOUD_BUCKET);
+    // const file = bucket.file(fileObj);
+    // const stream = file.createWriteStream({
+    //     metadata: {
+    //         contentType: fileObj.mimetype
+    //     }
+    // });
+    //
+    // stream.on('error', err => {
+    //     console.log("Error streaming")
+    // });
+    //
+    // stream.on('finish', () => {
+    //     console.log("Write finished");
+    // });
+    // stream.end(fileObj.buffer);
+    //
+    // console.log(`${filename} uploaded to ${bucket}.`);
+}
 
 // this has been modifed to call the shared getItems method that
 // returns data from firestore
@@ -106,6 +157,10 @@ app.post('/addItem', (req, res) => {
     // create a new object from the json data. The id property
     // has been removed because it is no longer required.
     // Firestore generates its own unique ids
+
+    //uploadImage("/Users/angup2/Documents/myLearning/GCP-Course/git-repo/open-source-pundits/pundit-app/frontend/uploads/fileToUpload");
+    //console.log((req.body.fileToUpload));
+    console.log(req.body);
     const ev = {
         itemName: req.body.itemName,
         itemType: req.body.itemType,
@@ -113,14 +168,62 @@ app.post('/addItem', (req, res) => {
         storeCode: req.body.storeCode,
         quantity: req.body.quantity,
         store: req.body.store,
+        price: req.body.price,
+        discount: req.body.discount,
         likes: 0
     }
+    console.log(req.body);
     firestore.collection("Items").add(ev).then(ret => {
         // return events using shared method that adds __id
         //getItems(req, res);
+        getItems(req, res);
     });
+    console.log("Added Document to Firestore");
 });
 
+app.post('/contact', (req, res) => {
+    // create a new object from the json data. The id property
+    // has been removed because it is no longer required.
+    // Firestore generates its own unique ids
+    const ev = {
+        name: req.body.name,
+        email: req.body.email,
+        message: req.body.message,
+    };
+    const data = JSON.stringify(ev);
+    const topicName = 'webportal-frontend-topic';
+    // [START pubsub_publish]
+    // [START pubsub_quickstart_publisher]
+    /**
+     * TODO(developer): Uncomment these variables before running the sample.
+     */
+        // const topicName = 'YOUR_TOPIC_NAME';
+        // const data = JSON.stringify({foo: 'bar'});
+
+        // Imports the Google Cloud client library
+    const {PubSub} = require('@google-cloud/pubsub');
+
+    // Creates a client; cache this for further use
+    const pubSubClient = new PubSub();
+
+    async function publishMessage() {
+        /**
+         * TODO(developer): Uncomment the following lines to run the sample.
+         */
+            // const topicName = 'my-topic';
+
+            // Publishes the message as a string, e.g. "Hello, world!" or JSON.stringify(someObject)
+        const dataBuffer = Buffer.from(data);
+
+        const messageId = await pubSubClient.topic(topicName).publish(dataBuffer);
+        console.log(`Message ${messageId} published.`);
+    }
+
+    publishMessage().catch(console.error);
+    // [END pubsub_publish]
+    // [END pubsub_quickstart_publisher]
+    console.log(ev);
+});
 
 // function used by both like and unlike. If increment = true, a like is added.
 // If increment is false, a like is removed.
@@ -166,7 +269,7 @@ app.use((err, req, res, next) => {
     res.status(500).json({ message: err.message });
 });
 
-const PORT = 8080;
+const PORT = 8086;
 const server = app.listen(PORT, () => {
     const host = server.address().address;
     const port = server.address().port;

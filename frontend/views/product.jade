@@ -1,0 +1,71 @@
+doctype html
+html
+    head
+        title Furnish and Decorate
+        meta(name='description', content='website description')
+        meta(name='keywords', content='website keywords, website keywords')
+        meta(http-equiv='content-type', content='text/html; charset=windows-1252')
+        link(rel='stylesheet', type='text/css', href='/style/style.css')
+    body
+        #main
+            #header
+                #logo
+                    #logo_text
+                        // class="logo_colour", allows you to change the colour of the text
+                        h1
+                            a(href='index.html')
+                                | Furnish and Decorate
+                                br
+                                span.logo_colour Pundit Furniture
+                        h2
+                #menubar
+                    ul#menu
+                        // put class="selected" in the li tag for the selected page - to highlight which page you're on
+                        li.selected
+                            a(href='#') Home
+                        li
+                            a(href='/product') Products
+                        li
+                            a(href='page.html') A Page
+                        li
+                            a(href='meet.html') Meet the Team
+                        li
+                            a(href='contact.html') Contact Us
+                        li
+                            a(href='login.html') Login
+
+
+                        div
+                            li.centered
+                                a(href="/addItem") Add Items
+                            table(border="1")
+                                thead
+                                    tr
+                                        th Serial Number
+                                        th Item Name
+                                        th Item Number
+                                        th Store Code
+                                        th Quantity
+                                        th Store Code
+                                        th Item Type
+                                        th Store
+                                        th Price
+                                        th Discount
+
+                                tbody
+                                    each val,index in items
+                                        tr
+                                            td #{index+1}
+                                            td #{val.itemName}
+                                            td #{val.itemNumber}
+                                            td #{val.storeCode}
+                                            td #{val.quantity}
+                                            td #{val.storeCode}
+                                            td #{val.itemType}
+                                            td #{val.store}
+                                            td #{val.price}
+                                            td #{val.discount}
+
+
+
+
